@@ -1,0 +1,108 @@
+WindowManager:
+    ThirdWindow:
+    MainWindow:
+    SecondWindow:
+    
+<ThirdWindow>:
+    
+    name:"loading"
+    canvas.before:
+        Color: 
+            rgba: (255, 255, 255,1)
+        Rectangle:
+            pos:self.pos
+            size:self.size    
+            
+    MDFloatLayout:
+        do_rotation:False
+        Image:
+            source: "The stasianery.png"
+            allow_stretch:True
+        Button:
+            text: ""
+            background_color: 0,0,0,0  
+            size_hint:root.size 
+            on_press:
+                root.wait()
+
+
+<MainWindow>:  
+    name:"Main"
+        
+
+
+
+<SecondWindow>:  
+    name:"Second" 
+    MDBoxLayout:
+        orientation:"vertical"
+        MDTopAppBar:
+            id:topbar
+            left_action_items:[["menu",lambda x:root.warning("DO you want to log out","Go ahead if you remember your account")]]
+            right_action_items:[["dots-vertical"]]
+        MDBottomNavigation:
+            MDBottomNavigationItem:
+                name: "Home"
+                text: "Home"
+                icon: "home"
+                #FloatLayout:
+                    #ZBarCam:
+                        #id: zbarcam
+                        #on_symbols:app.on_symbols(*args)
+                        #pos_hint: {'top': 1.3, 'right':1}
+                        #padding_y:30
+                        #allow_stretch:False
+                    #Label:
+                        #size_hint: None, None
+                        #size: self.texture_size[0], 50
+                        #text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
+                MDFloatLayout:
+                    MDFloatingActionButton:
+                        icon:"pen"
+                        pos_hint:{"center_x":.9,"center_y":.1}
+                        on_press:conac.text=str(swiper.get_current_index())       
+            MDBottomNavigationItem:
+                name: "video"
+                text: "Product"
+                icon: "pen"
+                MDSwiper:
+                    id:swiper
+                    size_hint_y:None
+                    height:root.height-topbar.height-dp(80)
+                    y:root.height-self.height-topbar.height-dp(80)
+                    on_overswipe_right:root.warning2("Out of products","sorry for your patience")
+                    MDSwiperItem:
+                        FitImage:
+                            source:"Ayam Goreng.png"
+                            radius:[20,]
+                    MDSwiperItem:
+                        FitImage:
+                            source:"PUZZLE.png"
+                            radius:[20,]
+                MDFloatLayout:
+                    MDFloatingActionButton:
+                        icon:"cash-register"
+                        pos_hint:{"center_x":.5,"center_y":.1}
+                        on_press:conac.text=str(swiper.get_current_index())
+                    MDLabel:
+                        id:conac
+                        text:"chao"    
+
+
+            
+
+    
+            
+        
+                
+                
+
+        
+
+
+        
+
+
+
+            
+        
